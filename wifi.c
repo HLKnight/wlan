@@ -5,20 +5,28 @@
 #include "text.h"
 #include "graph.h"
 
+/*
+	Function definition of process()
+	This function process data from txt file and display the data to the
+	screen in either text form or graphic form (with colors).
+	Input argument:
+		char filename[]:	The name of the file to be processed
+	Return argument: none
+*/
 void process(char filename[])
 {
-	FILE	*fp;
-	int		channel;	// Channel
-	double	frequency;	// Frequency
-	int		quality;	// Quality
-	int		level;		// Signal level
+	FILE	*fp;					// File pointer
+	int		channel;				// Channel
+	double	frequency;				// Frequency
+	int		quality;				// Quality
+	int		level;					// Signal level
 	char	str1[100], essid[100];	// ESSID
-	int		i=0;		// Counting variable
-	int		color;		// Color
-	int		input;		// Input status
+	int		i=0;					// Counting variable
+	int		color;					// Color
+	int		input;					// Input status
 
 	fp = fopen(filename, "r");
-	if(fp == NULL)		// If there is no file
+	if(fp == NULL)	// If there is no file
 	{
 		printf("Failed to open %s", filename);
 		return;
@@ -42,14 +50,15 @@ void process(char filename[])
 		fscanf(fp, "%*[^-]%d", &level);
 		fscanf(fp, "%[^\"]\"%[^\"]", str1, essid);
 #ifdef DEBUG
-		// Print out information in text form
 		if(input!=EOF)
 		{
+			// Print out information in text form
 			printSignal(channel, frequency, quality, level, essid, color);
 		}
 	}
 #else
-		if(level>-80 && input!=EOF)		// Filter weak signal with level below -80 dBm
+		// Filter weak signal whose level below the filter level
+		if(level>FILTER && input!=EOF)
 		{
 		// Draw graph according to information
 		drawSignal(channel, level, essid, color);

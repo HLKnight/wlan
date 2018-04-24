@@ -9,7 +9,7 @@ $(APPNAME) : $(OBJ)
 	gcc -c -o $@ $<
 
 clean :
-	rm $(OBJ) $(APPNAME)
+	rm $(OBJ) $(APPNAME) scan.txt
 
 archive :
 	tar cf $(TAR) *

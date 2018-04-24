@@ -6,23 +6,21 @@
 int main(void)
 {
 	int ret;
-	// run a while(1) loop
 	while(1)
 	{
+		// Scan for WLANs and stored in "scan.txt" file
 		ret=system(COMMAND);
-		// run system command "iwlist | egrep > scan.txt"
+		// If Ctrl+C is pressed
 		if(WIFSIGNALED(ret) && (WTERMSIG(ret)==SIGINT))
 		{
 			break;
 		}
-		// open scan.txt file to process data
+		// Open "scan.txt" file to process data
 		process("scan.txt");
 #ifdef DEBUG
-		break;
+		break;	// break the while loop
 #else
-		sleep(3);
+		sleep(3);	// sleep for 3 seconds
 #endif
-		// display network on screen
-		// if communication is defined, send data to a webserver
 	}
 }
