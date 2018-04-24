@@ -1,10 +1,7 @@
 # ---------------------------- WLAN SCAN PROJECT ------------------------------
 
-This project is meant to collect sound level at a proximity of a Raspberry Pi
-(RPi) device. The RPi is equipped with a USB sound card (C-media Electronics,
-Inc. Audio Adapter) and a microphone. The sound is recorded at 16000Hz sample
-rate and every second will produce 80 pieces of RMS value as a bar-diagram.
-In addition, 8 pieces of RMS value every second are sent to PHP program.
+This project scans for wireless networks with the Raspberry Pi then displays
+on the screen information about their ESSID, channel, level in graphs.
 
 # ---------------------------- Table of Contents ------------------------------
 
@@ -22,42 +19,7 @@ In addition, 8 pieces of RMS value every second are sent to PHP program.
 
 1. Configuration instructions
 
-	1.1. Set USB Sound Card as Default
-	
-		Since RPi onboard sound card doesn't have microphone interface, we
-		have to change the default audio device to be USB sound card.
-		
-		<1>	Boot up RPi and plug in the USB sound card. (You can use
-			command "lsusb" to check if the USB sound card is mounted)
-				
-		<2>	Modify the files "/etc/asound.conf" and ".asoundrc" respectively
-			with following content:
-
-				pcm.!default {
-					type plug
-					slave {
-						pcm "hw:1,0"
-					}
-				}
-				clt.!default {
-					type hw
-					card 1
-				}
-
-		<3>	Run "alsamixer" and you should be able to see that USB sound card 
-			is the default audio device.
-
-	1.2. Install libcurl
-	
-		Run command "ls /usr/include/curl" to check if libcurl is installed
-		or not. If yes, you can skip this step.
-		
-		<1> Run command "sudo apt-get update" to update the application list.
-		
-		<2> Run "sudo apt-get install libcurl3" to install the libcurl3.
-		
-		<3> Run "sudo apt-get itall libcurl4 4 openssl-dev" to install the
-			development API of libcurl4.
+	This program does not need any configuration to run.
 
 # -----------------------------------------------------------------------------
 
@@ -65,23 +27,19 @@ In addition, 8 pieces of RMS value every second are sent to PHP program.
 
 	2.1. Get installation files
 	
-		<1>	Enter the folder where you want to put the program to.
-		
-		<2> Enter the command:
-			"git clone https://github.com/HLKnight/sound"
+		Enter the folder where you want to put the program to and enter the
+		command "git clone https://github.com/HLKnight/wlan".
 			
 	2.2. Install
 	
-		<1> Run makefile by entering command "make".
+		Run makefile by entering command "make".
 		
-		<2> Setup PHP server with file "sound.php". (Instruction may be found
-			on the Internet)
 
 # -----------------------------------------------------------------------------
 
 3. Operating instructions
 
-	The program "sound.a" after installed can be run by command "./sound.a".
+	The program can be run by command "./WLAN.a".
 	
 	Exit the program by pressing "Ctrl + C".
 	
@@ -89,40 +47,39 @@ In addition, 8 pieces of RMS value every second are sent to PHP program.
 
 4. File manifest
 
-	comm.c
-	comm.h
+	graph.c
+	graph.h
 	main.c
 	makefile
 	screen.c
 	screen.h
-	sound.c
-	sound.h
-	sound.php
+	setting.h
+	text.c
+	text.h
+	wifi.c
+	wifi.h
 	
 # -----------------------------------------------------------------------------
 
 5. Copyright and license
 
-	This project source code is (C)2018 Gao Chao VAMK and distributed under
-	copyleft FOSS license.
+	Copyright (C) 2018	Nhat Minh Nguyen
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+                
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 	
 # -----------------------------------------------------------------------------
 
 6. Contact information
 
-	Chao Gao, Doctor of Science, Principal Lecturer
-		
-		Vaasa University of Applied Sciences
-		School of Technology
-		Information Technology
-		Wolffintie 30
-		65200 VAASA
-		FINLAND
-		
-		Phone: +358 207 663 322
-		Email: gc@vamk.fi
-		
-	Nguyen Nhat Minh, student
+	Nhat Minh Nguyen
 	
 		Vaasa University of Applied Sciences
 		School of Technology
@@ -138,7 +95,10 @@ In addition, 8 pieces of RMS value every second are sent to PHP program.
 
 7. Known bugs
 
-	<empty>
+	24.04.2018
+	
+	-	The program did not display properly the networks whose ESSIDs are
+		empty.
 	
 # -----------------------------------------------------------------------------
 
@@ -150,6 +110,9 @@ In addition, 8 pieces of RMS value every second are sent to PHP program.
 
 9. Changelog
 
-	<empty>
+	24.04.2018
+	
+	-	Fixed the bug that the program did not display properly the networks
+		whose ESSIDs are empty.
 
 # -----------------------------------------------------------------------------
