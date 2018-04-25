@@ -23,6 +23,7 @@ void draw(void)
 		printf("%2d dBm", -80+i*16/RES);
 	}
 	// Print out vertical lines to separate sections
+#ifndef UNICODE
 	for(i=0; i<23*RES-RES+1; i++)
 	{
 		gotoxy(23*RES-i, 8+RES);
@@ -30,6 +31,15 @@ void draw(void)
 		gotoxy(23*RES-i, 8+71*RES);
 		printf("|");
 	}
+#else
+	for(i=0; i<23*RES-RES+1; i++)
+	{
+		gotoxy(23*RES-i, 8+RES);
+		printf(FB);
+		gotoxy(23*RES-i, 8+71*RES);
+		printf(FB);
+	}
+#endif
 	// Print out the horizontal channel axis
 	gotoxy(23*RES, 1);
 	printf("Channel");
@@ -56,6 +66,7 @@ void drawSignal(int channel, int level, char essid[], int color)
 	int len = strlen(essid);	// take the length of ESSID
 	setColor(color);
 	// Draw two vertical lines
+#ifndef UNICODE
 	for(i=0; i<(level+88)/4*RES; i++)
 	{
 		gotoxy(23*RES-1-i, 9+(2+(channel-1)*4)*RES);
@@ -69,6 +80,21 @@ void drawSignal(int channel, int level, char essid[], int color)
 	{
 		printf("*");
 	}
+#else
+	for(i=0; i<(level+88)/4*RES; i++)
+	{
+		gotoxy(23*RES-1-i, 9+(2+(channel-1)*4)*RES);
+		printf(FB);
+		gotoxy(23*RES-1-i, 9+(20+(channel-1)*4)*RES);
+		printf(FB);
+	}
+	gotoxy(23*RES-i, 10+(2+(channel-1)*4)*RES);
+	// Draw the horizontal line
+	for(j=0; j<18*RES-1; j++)
+	{
+		printf(UHB);
+	}
+#endif
 	// Display ESSID with center align
 	gotoxy(23*RES-1-i, 9+(2+(channel-1)*4)*RES+(19*RES-RES+1-len)/2);
 	printf("%s", essid);
