@@ -20,6 +20,8 @@ on the screen information about their ESSID, channel, level in graphs.
 1. Configuration instructions
 
 	This program does not need any configuration to run.
+	
+	UTF-8 translation is recommended for better display, but not necessary.
 
 # -----------------------------------------------------------------------------
 
@@ -96,9 +98,8 @@ on the screen information about their ESSID, channel, level in graphs.
 7. Known bugs
 
 	24.04.2018
-	
 	-	The program did not display properly the networks whose ESSIDs are
-		empty.
+		empty. (Fixed)
 	
 # -----------------------------------------------------------------------------
 
@@ -110,9 +111,10 @@ on the screen information about their ESSID, channel, level in graphs.
 
 9. Changelog
 
-	24.04.2018
-	
+	24.04.2018	
 	-	Fixed the bug that the program did not display properly the networks
 		whose ESSIDs are empty.
+	26.04.2018
+	-	Add unicode symbols for better display.
 
 # -----------------------------------------------------------------------------
