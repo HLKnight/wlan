@@ -1,9 +1,9 @@
-# ---------------------------- WLAN SCAN PROJECT ------------------------------
+# --------------------------- WLAN SCAN PROJECT ------------------------------
 
 This project scans for wireless networks with the Raspberry Pi then displays
 on the screen information about their ESSID, channel, level in graphs.
 
-# ---------------------------- Table of Contents ------------------------------
+# --------------------------- Table of Contents ------------------------------
 
 1. Configuration instructions
 2. Installation instructions
@@ -15,7 +15,7 @@ on the screen information about their ESSID, channel, level in graphs.
 8. Troubleshooting
 9. Changelog
 
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 1. Configuration instructions
 
@@ -23,7 +23,7 @@ on the screen information about their ESSID, channel, level in graphs.
 	
 	UTF-8 translation is recommended for better display, but not necessary.
 
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 2. Installation instructions
 
@@ -37,7 +37,7 @@ on the screen information about their ESSID, channel, level in graphs.
 		Run makefile by entering command "make".
 		
 
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 3. Operating instructions
 
@@ -45,23 +45,41 @@ on the screen information about their ESSID, channel, level in graphs.
 	
 	Exit the program by pressing "Ctrl + C".
 	
-# -----------------------------------------------------------------------------
+	To change the way information is displayed:
+	
+		<1>	Exit the program.
+		<2>	Run command "make clean" to delete all installed file.
+		<3> Modify "setting.h" as the way you want the program to run.
+		<4> Recompile the program by typing in command "make".
+	
+# ----------------------------------------------------------------------------
 
 4. File manifest
 
-	graph.c
-	graph.h
-	main.c
-	makefile
-	screen.c
-	screen.h
-	setting.h
-	text.c
-	text.h
-	wifi.c
-	wifi.h
+	graph.c		contains functions that display information in visual form.
 	
-# -----------------------------------------------------------------------------
+	graph.h		header file of "graph.c"
+	
+	main.c		main file contains the backbone of the project
+	
+	makefile	used to 
+	
+	screen.c	contains functions that basicly manipulate the screen
+	
+	screen.h	header file of "screen.h"
+	
+	setting.h	header file used to config how the program run
+	
+	text.c		contains function that displays information in text form used
+				for DEBUG mode
+	
+	text.h		header file of "text.c"
+	
+	wifi.c		contains functions that scan wlan and process information
+	
+	wifi.h		header file of "wifi.c"
+	
+# ----------------------------------------------------------------------------
 
 5. Copyright and license
 
@@ -77,7 +95,7 @@ on the screen information about their ESSID, channel, level in graphs.
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
 	
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 6. Contact information
 
@@ -93,7 +111,7 @@ on the screen information about their ESSID, channel, level in graphs.
 		Phone: +358 418 097 204
 		Email: e1700681@edu.vamk.fi
 		
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 7. Known bugs
 
@@ -101,13 +119,13 @@ on the screen information about their ESSID, channel, level in graphs.
 	-	The program did not display properly the networks whose ESSIDs are
 		empty. (Fixed)
 	
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 8. Troubleshooting
 
 	<empty>
 	
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 9. Changelog
 
@@ -117,4 +135,4 @@ on the screen information about their ESSID, channel, level in graphs.
 	26.04.2018
 	-	Add unicode symbols for better display.
 
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
